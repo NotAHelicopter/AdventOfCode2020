@@ -1,10 +1,10 @@
 use std::fs;
-use std::process::exit;
 
 const INPUT: &str = "input/01.txt";
 const RESULT: i32 = 2020;
 
 pub fn solve01() {
+    println!("\ntest 01: \n");
 
     let vec: Vec<i32> = fs::read_to_string(INPUT)
         .expect("reading fail")
@@ -20,12 +20,12 @@ pub fn solve01() {
     }
 
     //part2
-    for n in vec.iter(){
+    'outer: for n in vec.iter(){
         for n2 in vec.iter(){
             let n3 = RESULT - (n + n2);
             if vec.contains(&n3) {
                 println!("part2: \n{} , {} and {} result = {}", n, n2, n3, n*n2*n3);
-                exit(0);
+                break 'outer;
             }
         }
     }
